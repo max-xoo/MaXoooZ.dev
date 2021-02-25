@@ -1,4 +1,4 @@
-module GoMcbeApi
+module MaXoooZ.dev
 
 go 1.16
 

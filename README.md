@@ -15,7 +15,7 @@ It's very simple, just follow the instructions below and you're done. You have o
 ```
 1- install golang - https://golang.org/dl/
 2- cd $PATH/MaXoooZ.dev
-3- go get github.com/henrylee2cn/faygo
+3- go get github.com/gorilla/mux
 4- go run main.go
 ```
 
@@ -23,6 +23,6 @@ It's done ! You can use the plugin on `localhost`:`8080` !
 
 ### Repository Informations
 
+- GoQuery [Click here](https://github.com/Seyz123/goquery)
 - Website [Click here](https://maxoooz.dev/)
-- Query [Click here](https://github.com/SpencerSharkey/gomc)
-- Faygo [Click here](https://github.com/henrylee2cn/faygo)
+- Mux [Click here](https://github.com/gorilla/mux)

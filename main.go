@@ -1,25 +1,19 @@
 package main
 
 import (
-	"github.com/henrylee2cn/faygo"
-	"MaXoooZ.dev/query"
+	"MaXoooZ.dev/router"
+	"log"
+	"net/http"
 )
 
-type Index struct {
-	Mcsrvstatus string `param:"<in:path> <required> <desc:MCSRVSTATUS>"`
-}
-
-func (i *Index) Serve(ctx *faygo.Context) error {
-	req := query.NewRequest()
-	req.Connect(i.Mcsrvstatus)
-	res, _ := req.Full()
-
-	return ctx.JSON(200, res)
-}
-
 func main() {
-	app := faygo.New("@maxoooz.dev/mcsrvstatus", "1.0.O")
-	app.GET("/api/mcsrvstatus/:mcsrvstatus", new(Index))
+	handler := router.Init()
 
-	faygo.Run()
+	srv := &http.Server{
+		Addr:    ":8080",
+		Handler: handler,
+	}
+
+	log.Println("Web server started on port 8080")
+	log.Fatal(srv.ListenAndServe())
 }

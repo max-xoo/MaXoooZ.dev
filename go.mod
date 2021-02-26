@@ -2,4 +2,4 @@ module MaXoooZ.dev
 
 go 1.16
 
-require github.com/henrylee2cn/faygo v1.3.2
+require github.com/gorilla/mux v1.8.0

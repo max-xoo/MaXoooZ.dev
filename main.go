@@ -10,10 +10,10 @@ func main() {
 	handler := router.Init()
 
 	srv := &http.Server{
-		Addr:    ":8080",
+		Addr:    ":80",
 		Handler: handler,
 	}
 
-	log.Println("Web server started on port 8080")
+	log.Println("Web server started on port 80")
 	log.Fatal(srv.ListenAndServe())
 }

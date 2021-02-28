@@ -25,7 +25,7 @@ It's very simple, just follow the instructions below and you're done. You have o
 4- go run main.go
 ```
 
-It's done ! You can use the plugin on `localhost`:`8080` !
+It's done ! You can use the plugin on `localhost`:`80` !
 
 ### Repository Informations
 

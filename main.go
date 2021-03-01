@@ -2,11 +2,14 @@ package main
 
 import (
 	"MaXoooZ.dev/router"
+	"MaXoooZ.dev/utils"
 	"log"
 	"net/http"
 )
 
 func main() {
+	utils.GetNewsXML("dev", "fr")
+
 	handler := router.Init()
 
 	srv := &http.Server{

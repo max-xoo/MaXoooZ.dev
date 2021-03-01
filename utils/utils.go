@@ -7,11 +7,13 @@ import (
 	Backend "github.com/tfriedel6/canvas/backend/softwarebackend"
 	"image"
 	"image/jpeg"
+	"image/png"
 	"io/ioutil"
 	"log"
 	"math/rand"
 	"os"
 	"path"
+	"strings"
 	"time"
 )
 
@@ -46,31 +48,64 @@ func GetIMG(category string, specific string) ([]byte, *Error) {
 	for _, f := range files {
 		arrFiles = append(arrFiles, f.Name())
 	}
-	width, height := GetImageDimension(path.Join("assets", "imgs", category, specific, arrFiles[Mt_rand(0, len(arrFiles))]))
+	fileName := arrFiles[Mt_rand(0, len(arrFiles))]
+	i := strings.Index(fileName, ".png")
 
-	backend := Backend.New(width, height)
-	backend.MSAA = 1
+	if i > -1 {
+		width, height := GetImageDimension(path.Join("assets", "imgs", category, specific, fileName))
 
-	ctx := canvas.New(backend)
-	img, err := ctx.LoadImage(path.Join("assets", "imgs", category, specific, arrFiles[Mt_rand(0, len(arrFiles))]))
+		backend := Backend.New(width, height)
+		backend.MSAA = 1
 
-	if err != nil {
-		return nil, NewError(503, err.Error())
+		ctx := canvas.New(backend)
+		img, err := ctx.LoadImage(path.Join("assets", "imgs", category, specific, fileName))
+
+		if err != nil {
+			return nil, NewError(503, "Service Unavailable")
+		}
+		w, h := float64(ctx.Width()), float64(ctx.Height())
+
+		ctx.DrawImage(img, 0, 0, w, h)
+		ctx.Fill()
+
+		ctx.Stroke()
+		defer img.Delete()
+
+		f := bytes.NewBuffer([]byte{})
+		err = png.Encode(f, backend.Image)
+
+		if err != nil {
+			return nil, NewError(503, "Service Unavailable")
+		}
+		b := f.Bytes()
+		return b, nil
+	} else {
+		width, height := GetImageDimension(path.Join("assets", "imgs", category, specific, fileName))
+
+		backend := Backend.New(width, height)
+		backend.MSAA = 1
+
+		ctx := canvas.New(backend)
+		img, err := ctx.LoadImage(path.Join("assets", "imgs", category, specific, fileName))
+
+		if err != nil {
+			return nil, NewError(503, "Service Unavailable")
+		}
+		w, h := float64(ctx.Width()), float64(ctx.Height())
+
+		ctx.DrawImage(img, 0, 0, w, h)
+		ctx.Fill()
+
+		ctx.Stroke()
+		defer img.Delete()
+
+		f := bytes.NewBuffer([]byte{})
+		err = jpeg.Encode(f, backend.Image, &jpeg.Options{jpeg.DefaultQuality})
+
+		if err != nil {
+			return nil, NewError(503, "Service Unavailable")
+		}
+		b := f.Bytes()
+		return b, nil
 	}
-	w, h := float64(ctx.Width()), float64(ctx.Height())
-
-	ctx.DrawImage(img, 0, 0, w, h)
-	ctx.Fill()
-
-	ctx.Stroke()
-	defer img.Delete()
-
-	f := bytes.NewBuffer([]byte{})
-	err = jpeg.Encode(f, backend.Image, &jpeg.Options{jpeg.DefaultQuality})
-
-	if err != nil {
-		return nil, NewError(503, err.Error())
-	}
-	b := f.Bytes()
-	return b, nil
 }

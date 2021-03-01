@@ -48,7 +48,7 @@ func (req *Request) Simple() (*SimpleResponse, error) {
 
 	scan.Scan()
 	response.GameType = scan.Text()
-	
+
 	scan.Scan()
 	response.Map = scan.Text()
 

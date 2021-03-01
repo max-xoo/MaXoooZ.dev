@@ -7,6 +7,7 @@
 
 ### The site currently contains :
 
+- [x] API : Google News
 - [x] API : Dog IMG
 - [x] API : Cat IMG
 - [x] API : MinecraftBedrock server status
@@ -18,17 +19,12 @@ It's very simple, just follow the instructions below and you're done. You have o
 ```
 1- install golang - https://golang.org/dl/
 2- cd $PATH/MaXoooZ.dev
-
-3- go get github.com/gorilla/mux
-4- go get github.com/tfriedel6/canvas
-
-4- go run main.go
+3- go run main.go
 ```
 
-It's done ! You can use the plugin on `localhost`:`8080` !
+It's done ! You can use the plugin on `localhost`:`80` !
 
 ### Repository Informations
 
-- GoMc [Click here](https://github.com/SpencerSharkey/gomc)
 - Website [Click here](https://maxoooz.dev/)
 - Mux [Click here](https://github.com/gorilla/mux)

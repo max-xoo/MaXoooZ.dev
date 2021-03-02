@@ -29,6 +29,6 @@ It's done ! You can use the plugin on `localhost`:`80` !
 - Website [[Click here](https://maxoooz.dev/)]
 - Mux [[Click here](https://github.com/gorilla/mux)]
 
-- Discord Name : MaXoooZ#2021
-- Twitter [[Click here](https://twitter.com/MaXoooZ_)]
-- Discord [[Click here](https://discord.gg/KFgSzPWNXk)]
+Discord Name : MaXoooZ#2021  
+Twitter [[Click here](https://twitter.com/MaXoooZ_)]  
+Discord [[Click here](https://discord.gg/KFgSzPWNXk)]

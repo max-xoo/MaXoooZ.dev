@@ -1,4 +1,4 @@
-package google
+package web
 
 import (
 	"MaXoooZ.dev/utils"

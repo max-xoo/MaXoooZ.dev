@@ -12,10 +12,10 @@ type Rss struct {
 }
 
 type Channel struct {
-	Title         string   `xml:"title"`
-	Link          string   `xml:"link"`
-	Language      string   `xml:"language"`
-	Item          []Item   `xml:"item"`
+	Title    string `xml:"title"`
+	Link     string `xml:"link"`
+	Language string `xml:"language"`
+	Item     []Item `xml:"item"`
 }
 
 type Item struct {

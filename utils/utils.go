@@ -3,6 +3,7 @@ package utils
 import (
 	"bytes"
 	"fmt"
+	"github.com/gookit/color"
 	"github.com/tfriedel6/canvas"
 	Backend "github.com/tfriedel6/canvas/backend/softwarebackend"
 	"image"
@@ -11,6 +12,7 @@ import (
 	"io/ioutil"
 	"log"
 	"math/rand"
+	"net/http"
 	"os"
 	"path"
 	"strings"
@@ -26,12 +28,14 @@ func GetImageDimension(imagePath string) (int, int) {
 	file, err := os.Open(imagePath)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", err)
+		NewError(500, "Internal Server Error")
+		return 0, 0
 	}
 	image, _, err := image.DecodeConfig(file)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%s: %v\n", imagePath, err)
+		NewError(500, "Internal Server Error")
+		return 0, 0
 	}
 	return image.Width, image.Height
 }
@@ -108,4 +112,13 @@ func GetIMG(category string, specific string) ([]byte, *Error) {
 		b := f.Bytes()
 		return b, nil
 	}
+}
+
+func LoggingMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		magenta := color.FgMagenta.Render
+		fmt.Printf(time.Now().Format("01/02/2006 15:04:05") + " %s " + r.RequestURI + " %s" + r.RemoteAddr + "%s\n", magenta(":"), magenta("["), magenta("]"))
+
+		next.ServeHTTP(w, r)
+	})
 }

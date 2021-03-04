@@ -1,4 +1,4 @@
-### This repository is my site where I try a lot of things, the progress depends on my desire
+### This repository is my site where I try a lot of things for improve my development level
 
 ### Todo :
 
@@ -31,4 +31,6 @@ It's done ! You can use the plugin on `localhost`:`80` !
 
 Discord Name : MaXoooZ#2021  
 Twitter [[Click here](https://twitter.com/MaXoooZ_)]  
-Discord [[Click here](https://discord.gg/KFgSzPWNXk)]
+Discord [[Click here](https://discord.gg/KFgSzPWNXk)]  
+
+-> The progress depends on my desire
